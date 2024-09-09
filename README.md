@@ -13,3 +13,14 @@ datasets/
 ```bash
 python grounded_sam2_hf_model_imgs_MaskExtract.py --path {PATH}
 ```
+
+## Outputs:
+Saving the masks in `datasets/{PATH}/masks` and the annotated images in `datasets/{PATH}/annotated`
+```bash
+datasets/
+│
+├── ds01/
+│   ├── images
+│   ├── masks
+│   └── annotated
+```
