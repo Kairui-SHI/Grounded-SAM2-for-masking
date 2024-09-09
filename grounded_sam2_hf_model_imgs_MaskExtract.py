@@ -43,8 +43,8 @@ path = args.path
 
 text = "black stone bunny."
 # scene = "BlackBunny"
-img_path = f'datasets/{path}/images/'
-save_path = f'datasets/{path}/'
+img_path = f'{path}/images/'
+save_path = f'{path}/'
 annotated_path = os.path.join(save_path, "annotated")
 mask_path = os.path.join(save_path, "masks")
 if not os.path.exists(annotated_path):
