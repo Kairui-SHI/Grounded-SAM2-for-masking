@@ -38,10 +38,11 @@ grounding_model = AutoModelForZeroShotObjectDetection.from_pretrained(model_id).
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, required=True, help='input your path')
+parser.add_argument('--text', type=str, default="foreground object.", help='input your text')
 args = parser.parse_args()
 path = args.path
 
-text = "black stone bunny."
+text = args.text
 # scene = "BlackBunny"
 img_path = f'{path}/images/'
 save_path = f'{path}/'
@@ -55,9 +56,10 @@ if not os.path.exists(mask_path):
 Images = sorted(os.listdir(img_path), key=lambda x: x.zfill(10))
 
 num_no_detection = 0
-for idx, img_name in tqdm(enumerate(Images), total=len(Images)):
+for idx, img_name in tqdm(enumerate([img_name for img_name in Images if img_name.endswith('.png')]), total=len(Images)):
     image_path = os.path.join(img_path, img_name)
     image = Image.open(image_path)
+    image = image.convert("RGB")
 
     sam2_predictor.set_image(np.array(image.convert("RGB")))
 
